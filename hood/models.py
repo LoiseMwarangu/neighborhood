@@ -24,12 +24,12 @@ class User(models.Model):
         return project
 
 class Hood(models.Model):
-    name= models.ForeignKey(User,on_delete=models.CASCADE, null = True )
-    location=LocationField(based_fields=['name'], zoom=7, default=Point(1.0, 1.0))
+    hoodname= models.ForeignKey(User,on_delete=models.CASCADE, null = True )
+    location=LocationField(based_fields=['name'], zoom=7)
     count=models.CharField()
 
     def __str__(self):
-        return self.name
+        return self.hoodname
 
     def save_hood(self):
         self.save()
@@ -39,7 +39,7 @@ class Hood(models.Model):
 
     @classmethod
     def get_name(cls, project_id):
-        hood = cls.objects.get(id=name_id)
+        hood = cls.objects.get(id=hoodname_id)
         return hood
 
     @classmethod
@@ -51,7 +51,7 @@ class Hood(models.Model):
     
 
 class Business(models.Model): 
-    name = models.ForeignKey(User,on_delete=models.CASCADE, null = True)
+    businessname = models.ForeignKey(User,on_delete=models.CASCADE, null = True)
     email = models.EmailField(blank=True, unique=True)
     hood = models.ForeignKey(User,on_delete=models.CASCADE, null = True)
 
@@ -66,7 +66,7 @@ class Business(models.Model):
         
     @classmethod
     def get_name(cls, project_id):
-        businessname = cls.objects.get(id=name_id)
+        businessname = cls.objects.get(id=businessname_id)
         return businessname
     
     @classmethod
