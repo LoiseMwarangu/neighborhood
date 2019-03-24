@@ -3,24 +3,19 @@ import datetime as dt
 from django.http  import HttpResponse,Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from .models import *
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from .forms import *
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
 def index(request):
     date = dt.date.today()
-    hoods = Neighbourhood.objects.all()
+    hoods = Hood.objects.all()
     return render(request, 'index.html',{"date":date, "hoods":hoods})
 
 
@@ -28,7 +23,7 @@ def profile(request):
     date = dt.date.today()
     current_user = request.user
     profile = Profile.objects.get(user=current_user.id)
-    hoods = Neighbourhood.objects.all()
+    hoods = Hood.objects.all()
     return render(request, 'profile/profile.html', {"date": date, "profile":profile,"hoods":hoods})
 
 def edit_profile(request):
@@ -149,3 +144,6 @@ def post_business(request,id):
     else:
         form = BusinessForm()
         return render(request,'new_business.html',{"form":form,"business":business,"hood":hood,  "date":date})
+def signout(request):
+    logout(request)
+    return redirect('login')

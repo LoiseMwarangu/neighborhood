@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     hood = models.ForeignKey('Hood',on_delete=models.CASCADE,null=True,blank=True)
     location=LocationField(based_fields=['hood'], zoom=7)
+    profile_pic = models.ImageField(upload_to='profile/')
 
 
     def assign_hood(self,hood):
@@ -28,11 +29,17 @@ class UserProfile(models.Model):
     def delete_profile(self):
         self.delete()
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
     def __str__(self):
         return f'{self.user.username}'
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=30)
+    admin = models.ForeignKey(UserProfile, related_name='hoods', null=True)    
 
     def create_hood(self):
         self.save()

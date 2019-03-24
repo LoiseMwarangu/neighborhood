@@ -1,22 +1,22 @@
 from django import forms
 from .models import *
 
-class HoodForm(ModelForm):
+class HoodForm(forms.ModelForm):
     class Meta:
-        model = Neighborhood
-        fields = ('Hood_name',)
+        model = Hood
+        exclude = ['admin']
 
-class UpdateProfileForm(ModelForm):
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('first_name','last_name','location')
 
-class AddBusinessForm(ModelForm):
+class AddBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ('name','email','business_location')
 
-class PostForm(ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title','post_description',)

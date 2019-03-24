@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div style="color:antiquewhite; background-color:#15153f" class="card-header">
+            <div  class="card-header">
                 <p>{{brush.post}}</p>
             </div>
 
@@ -36,8 +36,8 @@
     {% for comment in comments %}
     <h3 class="comments">Comments:</h3>
             {{comment.comment}}
-            <footer class="blockquote-footer" style="color:white;">
-                <cite title="Source Title" style="color:black">said -{{comment.postername}}</cite>
+            <footer class="blockquote-footer" ">
+                <cite title="Source Title" >from -{{comment.postername}}</cite>
             </footer>
         </div>
     </div>
@@ -45,7 +45,7 @@
     {% else %}
     <p>No comments found</p>
     {% endif %}
-    <div style="text-align:center; background-color:rgb(10, 10, 10);" class="card-image"></div>
+    <div ></div>
     <div class="card-footer">
         <form action="/hoods/new/comment/{{brush.id}}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
