@@ -4,7 +4,6 @@ from django.http  import HttpResponse,Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.http import HttpResponse
@@ -62,8 +61,8 @@ def new_hood(request):
     return render(request, 'new_hood.html', {"form": form})
 def new_post(request,id):
     date = dt.date.today()
-    hood=Neighbourhood.objects.get(id=id)
-    posts = Post.objects.filter(neighbourhood=hood)
+    hoody=Hood.objects.get(id=id)
+    posts = Post.objects.filter(hood=hoody)
     comments = Comment.objects.filter(post=id).order_by('-pub_date')
 
     form = PostForm()
@@ -73,12 +72,12 @@ def new_post(request,id):
             post = form.save(commit=False)
             post.user = request.user.profile
             post.profile = profile
-            post.neighbourhood = hood
+            post.hood = hoody
             post.save()
             return redirect('index')
     else:
         form = PostForm()
-        return render(request,'new_post.html',{"form":form,"posts":posts,"hood":hood,  "date":date, 'comments':comments})
+        return render(request,'new_post.html',{"form":form,"posts":posts,"hoody":hoody,  "date":date, 'comments':comments})
 
 
 @login_required(login_url='/accounts/login/')
