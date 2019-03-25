@@ -30,14 +30,14 @@ def profile(request):
 def edit_profile(request):
     date = dt.date.today()
     current_user = request.user
-    profile = Profile.objects.get(user=current_user.id)
+    profile = UserProfile.objects.get(user=current_user.id)
     if request.method == 'POST':
-        signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile)
+        signup_form = UpdateProfileForm(request.POST, request.FILES,instance=request.user.profile)
         if signup_form.is_valid():
             signup_form.save()
             return redirect('profile')
     else:
-        signup_form =EditForm()
+        signup_form =UpdateProfileForm()
 
     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile})
 @login_required(login_url='/accounts/login/')
@@ -116,35 +116,35 @@ def newcomment(request,id):
 
     return render(request, 'newcomment.html',{'brush':brush,"comments":comments,"form":form})
 
-
-
-@login_required(login_url='/accounts/login/')
-def hoods(request,id):
-    current_user=request.user
-    date = dt.date.today()
-    post=Neighbourhood.objects.get(id=id)
-
-    brushs = Post.objects.filter(neighbourhood=post)
-    business = Business.objects.filter(neighbourhood=post)
-    return render(request,'each_neighood.html',{"post":post,"date":date,"brushs":brushs, "business":business})
-
-
 def post_business(request,id):
     date = dt.date.today()
-    hood=Neighbourhood.objects.get(id=id)
-    business = Business.objects.filter(neighbourhood=hood)
+    hood=Hood.objects.get(id=id)
+    business = Business.objects.filter(hood=hood)
     form = BusinessForm()
     if request.method == 'POST':
         form = BusinessForm(request.POST, request.FILES)
         if form.is_valid():
             business = form.save(commit=False)
             business.profile = request.user.profile
-            business.neighbourhood = hood
+            business.hood = hood
             business.save()
             return redirect('index')
     else:
         form = BusinessForm()
         return render(request,'new_business.html',{"form":form,"business":business,"hood":hood,  "date":date})
+
+@login_required(login_url='/accounts/login/')
+def hood(request,id):
+    current_user=request.user
+    date = dt.date.today()
+    post=Hood.objects.get(id=id)
+
+    brushs = Post.objects.filter(hood=post)
+    business = Business.objects.filter(hood=post)
+    return render(request,'each_neighood.html',{"post":post,"date":date,"brushs":brushs, "business":business})
+
+
+
 def signout(request):
     logout(request)
     return redirect('login')

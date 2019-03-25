@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
+<body>
         {% if request.user.id == 1 %}
         <div class="container">
-          <h3 class="center-align">Neighborhoods Available</h3>
+          <h3 class="center-align">hoods Available</h3>
           <div class="row">
-            {% for neighborhood in neighborhoods %}
-            <a href="{% url 'neighborhood' neighborhood.id %}" class='black-text'>
+            {% for hood in hoods %}
+            <a href="{% url 'hood' hood.id %}" class='black-text'>
               <div class="col s12 m12 l6 xl6">
                 <div class="divider"></div>
                 <div class="section">
-                  <h4 class="center-align"><i class="material-icons">home</i>{{neighborhood.neighborhood_name}}</h4>
+                  <h4 class="center-align"><i class="material-icons">home</i>{{hood.hood_name}}</h4>
                 </div>
               </div>
             </a>
@@ -18,7 +19,7 @@
         
             <div id="modal1" class="modal">
               <div class="modal-content">
-                <h4 class="center-align">Create Neighborhood</h4>
+                <h4 class="center-align">Create hood</h4>
                 <div class="divider"></div>
                 <form action="{% url 'index' %}" method="POST">
                   {% csrf_token %}
@@ -31,15 +32,15 @@
         </div>
         {% endif %}
         
-        {% if user.neighborhood == null and request.user.id != 1 %}
+        {% if user.hood == null and request.user.id != 1 %}
         <div class="container">
-          <h3 class="center-align">pick your neighborhood</h3>
+          <h3 class="center-align">pick your hood</h3>
           <div class="row">
-            {% for neighborhood in neighborhoods %}
+            {% for hood in hoods %}
             <div class="divider"></div>
             <div class="section">
-              <a href="{% url 'neighborhood' neighborhood.id %}" class="btn-floating" style="background-color:#ee6e73!important;"><i class="material-icons">check</i></a>
-              <h4 class="center-align"><i class="material-icons">home</i>{{neighborhood.neighborhood_name}}</h4>
+              <a href="{% url 'hood' hood.id %}" class="btn-floating" ><i ><h4 class="center-align"><i class="material-icons">home</i>{{hood.hood_name}}</h4></i></a>
+              
             </div>
             {% endfor %}
           </div>
@@ -49,9 +50,10 @@
         <div class="container row">
             <div class= "col-md-5" >
                 <h1>ABOUT US</h1>
-                <p>Our nation is built on the strength of our citizens. Every day, we encounter situations calling upon us to be the eyes and ears of law enforcement. Not only does neighborhood watch allow citizens to help in the fight against crime, it is also an opportunity for communities to bond through service. The Neighborhood Watch Program draws upon the compassion of average citizens, asking them to lend their neighbors a hand. National hood watch is the portal for training to assist law enforcement agencies and their communities, technical assistance, resource documents, watch stories, networking, and assistance to the field this  empowers citizens to become active in community efforts through participation in Neighborhood Watch groups.</p>
+                <p>Our nation is built on the strength of our citizens. Every day, we encounter situations calling upon us to be the eyes and ears of law enforcement. Not only does hood watch allow citizens to help in the fight against crime, it is also an opportunity for communities to bond through service. The hood Watch Program draws upon the compassion of average citizens, asking them to lend their neighbors a hand. National hood watch is the portal for training to assist law enforcement agencies and their communities, technical assistance, resource documents, watch stories, networking, and assistance to the field this  empowers citizens to become active in community efforts through participation in hood Watch groups.</p>
             </div> 
             <div>
+              <div class= "col-md-5" >
                 <h1>CONTACTS</h1>
                 <p>Phone number: +2547084867
                    Email: Loisemwarangu@gmail.com 
@@ -59,4 +61,5 @@
             </div>
     </div>
     </footer>
+  </body>
     {% endblock %}

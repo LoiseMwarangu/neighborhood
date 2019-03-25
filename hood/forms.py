@@ -9,7 +9,7 @@ class HoodForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('first_name','last_name','location')
+        fields = ('first_name','hoodd','location')
 
 class AddBusinessForm(forms.ModelForm):
     class Meta:

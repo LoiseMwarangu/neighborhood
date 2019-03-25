@@ -13,7 +13,7 @@ urlpatterns=[
     url(r'^hoods/new/comment/(\d+)',views.newcomment, name='newcomment'),
     url(r'^location$', views.location, name='location'),
     url(r'^hoods/new/business/(\d+)$',views.post_business, name='new-business'),
-    url(r'^hoods/(\d+)',views.hoods,name='hoods'),
+    url(r'^hood/(\d+)',views.hood,name='hood'),
     url(r'^new/hood$', views.new_hood, name='new-hood')
 
 ]

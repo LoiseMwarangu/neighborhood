@@ -38,7 +38,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=30)
-    admin = models.ForeignKey(UserProfile,blank=True)    
 
     def create_hood(self):
         self.save()
