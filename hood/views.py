@@ -125,8 +125,8 @@ def post_business(request,id):
         form = AddBusinessForm(request.POST, request.FILES)
         if form.is_valid():
             business = form.save(commit=False)
-            business.profile = request.user.profile
-            business.hood = hood
+            business.owner = request.user
+            business.business_hood = hood
             business.save()
             return redirect('index')
     else:
