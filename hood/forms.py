@@ -14,7 +14,7 @@ class UpdateProfileForm(forms.ModelForm):
 class AddBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        fields = ('name','email','business_location')
+        exclude = ['business_location']
 
 class PostForm(forms.ModelForm):
     class Meta:
