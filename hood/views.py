@@ -119,10 +119,10 @@ def newcomment(request,id):
 def post_business(request,id):
     date = dt.date.today()
     hood=Hood.objects.get(id=id)
-    business = Business.objects.filter(hood=hood)
-    form = BusinessForm()
+    business = Business.objects.filter(business_hood=hood)
+    form = AddBusinessForm()
     if request.method == 'POST':
-        form = BusinessForm(request.POST, request.FILES)
+        form = AddBusinessForm(request.POST, request.FILES)
         if form.is_valid():
             business = form.save(commit=False)
             business.profile = request.user.profile
@@ -130,7 +130,7 @@ def post_business(request,id):
             business.save()
             return redirect('index')
     else:
-        form = BusinessForm()
+        form = AddBusinessForm()
         return render(request,'new_business.html',{"form":form,"business":business,"hood":hood,  "date":date})
 
 @login_required(login_url='/accounts/login/')
@@ -139,8 +139,8 @@ def hood(request,id):
     date = dt.date.today()
     post=Hood.objects.get(id=id)
 
-    brushs = Post.objects.filter(hood=post)
-    business = Business.objects.filter(hood=post)
+    brushs = Post.objects.filter(post_hood=post)
+    business = Business.objects.filter(business_hood=post)
     return render(request,'each_neighood.html',{"post":post,"date":date,"brushs":brushs, "business":business})
 
 

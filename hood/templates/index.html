@@ -11,7 +11,7 @@
               <div class="col s12 m12 l6 xl6">
                 <div class="divider"></div>
                 <div class="section">
-                  <h4 class="center-align"><i class="material-icons" style="display:-moz-inline-stack;">home</i>{{hood.hood_name}}</h4>
+                  <h4 class="center-align"><i class="material-icons"">home</i>{{hood.hood_name}}</h4>
                 </div>
               </div>
             </a>
@@ -39,7 +39,7 @@
             {% for hood in hoods %}
             <div class="divider"></div>
             <div class="section">
-              <a href="{% url 'hood' hood.id %}" class="btn-floating" ><i ><h4 class="center-align"><i class="material-icons">home</i>{{hood.hood_name}}</h4></i></a>
+             <a href="{% url 'hood' hood.id %}" class="btn-floating" ><i ><h4 class=""><i class="material-icons">home</i>{{hood.hood_name}}<br></h4></i></a>
               
             </div>
             {% endfor %}
@@ -48,17 +48,19 @@
         {% endif %}
     <footer>
         <div class="container row">
-            <div class= "col-md-5" >
+            <div class= "col-md-6" >
                 <h1>ABOUT US</h1>
                 <p>Our nation is built on the strength of our citizens. Every day, we encounter situations calling upon us to be the eyes and ears of law enforcement. Not only does hood watch allow citizens to help in the fight against crime, it is also an opportunity for communities to bond through service. The hood Watch Program draws upon the compassion of average citizens, asking them to lend their neighbors a hand. National hood watch is the portal for training to assist law enforcement agencies and their communities, technical assistance, resource documents, watch stories, networking, and assistance to the field this  empowers citizens to become active in community efforts through participation in hood Watch groups.</p>
             </div> 
             <div>
-              <div class= "col-md-5" >
+              <div class= "col-md-6" >
                 <h1>CONTACTS</h1>
                 <p>Phone number: +2547084867
                    Email: Loisemwarangu@gmail.com 
                 </p>
             </div>
+    </div>
+    </div>
     </div>
     </footer>
   </body>
