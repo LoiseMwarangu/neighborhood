@@ -2,7 +2,6 @@ from django.db import models
 from tinymce.models import HTMLField
 from django.core.validators import URLValidator
 from django.contrib.auth.models import User
-from location_field.models.spatial import LocationField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MinValueValidator,MaxValueValidator
@@ -10,13 +9,13 @@ from datetime import datetime
 from tinymce.models import HTMLField
 
 
+
 class UserProfile(models.Model):
     first_name = models.CharField(max_length=20,blank=True)
     last_name = models.CharField(max_length=20,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    hood = models.ForeignKey('Hood',on_delete=models.CASCADE,null=True,blank=True)
-    location=LocationField(based_fields=['hood'], zoom=7)
-    profile_pic = models.ImageField(upload_to='profile/')
+    hoodd = models.ForeignKey('Hood',on_delete=models.CASCADE,null=True,blank=True)
+    location=models.CharField(max_length=20,blank=True)
 
 
     def assign_hood(self,hood):
@@ -39,7 +38,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=30)
-    admin = models.ForeignKey(UserProfile, related_name='hoods', null=True)    
+    admin = models.ForeignKey(UserProfile)    
 
     def create_hood(self):
         self.save()
@@ -65,7 +64,7 @@ class Business(models.Model):
     name = models.CharField(max_length=30)
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     business_hood = models.ForeignKey('Hood',on_delete=models.CASCADE)
-    business_location=LocationField(based_fields=['business_hood'], zoom=7)
+    business_location=models.CharField(max_length=20,blank=True)
     email = models.EmailField()
 
     def create_business(self):

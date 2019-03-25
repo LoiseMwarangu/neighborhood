@@ -30,7 +30,8 @@ if config('MODE')=="dev":
            'PASSWORD': config('DB_PASSWORD'),
            'HOST': config('DB_HOST'),
            'PORT': '',
-       }
+       },
+
        
    }
 # production
@@ -56,7 +57,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tinymce',
-    'location_field.apps.DefaultConfig'
 
 ]
 
