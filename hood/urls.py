@@ -12,7 +12,6 @@ urlpatterns=[
     url(r'^hoods/new/post/(\d+)$', views.new_post, name='new-post'),
     url(r'^hoods/new/comment/(\d+)',views.newcomment, name='newcomment'),
     url(r'^location$', views.location, name='location'),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^hoods/new/business/(\d+)$',views.post_business, name='new-business'),
     url(r'^hoods/(\d+)',views.hoods,name='hoods'),
     url(r'^new/hood$', views.new_hood, name='new-hood')

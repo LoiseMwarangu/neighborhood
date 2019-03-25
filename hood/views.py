@@ -12,6 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from .forms import *
 
 def index(request):
     date = dt.date.today()
@@ -22,7 +23,7 @@ def index(request):
 def profile(request):
     date = dt.date.today()
     current_user = request.user
-    profile = Profile.objects.get(user=current_user.id)
+    profile = UserProfile.objects.get(user=current_user.id)
     hoods = Hood.objects.all()
     return render(request, 'profile/profile.html', {"date": date, "profile":profile,"hoods":hoods})
 
@@ -42,7 +43,7 @@ def edit_profile(request):
 @login_required(login_url='/accounts/login/')
 def new_hood(request):
     current_user = request.user
-    profile = Profile.objects.get(user=current_user)
+    profile = UserProfile.objects.get(user=current_user)
     if request.method == 'POST':
         form = HoodForm(request.POST, request.FILES)
         if form.is_valid():
@@ -81,7 +82,7 @@ def search_results(request):
         search_term = request.GET.get("business")
         searched_businesses = Business.objects.filter(name=search_term)
         message = f"{search_term}"
-        profiles=  Profile.objects.all( )
+        profiles=  UserProfile.objects.all( )
 
         return render(request, 'search.html',{"message":message,"business": searched_businesses,'profiles':profiles})
 

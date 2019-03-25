@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
-{% load bootstrap4 %}
-{% load staticfiles %}
+{% load static %} 
+{% load bootstrap4%}{% load staticfiles %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 
@@ -20,14 +21,14 @@
 
 {% block content %}
 
-<body style="background-color: white">
+<body >
 
-    <div style="color:antiquewhite;" class="container">
+    <div  class="container">
         <div class="coll">
             <div class="row">
                 <div class="col-md-6">
                     <img style="border-radius:50%; width:100px; height:100px;" src="{{post.image.url}}" alt="" class="img-thumbnail">
-                    <span style="color:black">{{ post.name}}</span>
+                    <span>{{ post.name}}</span>
                 </div>
                 <div class="col-md-6">
                     <br>
@@ -60,7 +61,7 @@
                             {% for brushs_item in brushs%}
 
                             <div class="card">
-                                <div style="color:antiquewhite; background-color:#15153f" class="card-header">
+                                <div  class="card-header">
                                     <p>{{brushs_item.post}}</p>
                                 </div>
                                 {% for comment in comments %}
@@ -96,12 +97,12 @@
                         <button class="btn btn-lignt">
                             <i class="large material-icons">add_circle</i>Add Business</button>
                     </a>
-                    <h3 id="profile" style="color:black">Businesses:</h3>
+                    <h3 id="profile" >Businesses:</h3>
                     <div class="row">
                         {% for business_item in business%}
                         <div class="col-md-4">
                             <div class="card">
-                                <div style="color:antiquewhite; background-color:white" class="card-header">
+                                <div class="card-header">
                                     <h5 style="color:black">{{business_item.name}}</h5>
                                 </div>
                                 <div style="text-align:center; background-color:white" class="card-body">
