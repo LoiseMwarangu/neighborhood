@@ -1,9 +1,9 @@
 # Neighbourwatch
 
-##Created by
+##  Created by
 Loise Wangari Mwarangu
 
-##Link to deployed site
+## Link to deployed site
 https://loisewatch.herokuapp.com/
 
 ## Project Description
@@ -22,7 +22,7 @@ a user can:
 
 
 
-##Setup and installations
+## Setup and installations
 - Python3.6
 - Virtual environment
 - Django
