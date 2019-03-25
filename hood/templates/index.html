@@ -20,7 +20,7 @@
         
             <div id="modal1" class="modal">
               <div class="modal-content">
-                <h4 class="center-align">Create Neighborhood</h4>
+                <h4 class="center-align">Create A Neighborhood</h4>
                 <div class="divider"></div>
                 <form action="{% url 'index' %}" method="POST">
                   {% csrf_token %}
@@ -36,7 +36,7 @@
         
         {% if user.neighborhood == null and request.user.id != 1 %}
         <div class="container">
-          <h3 class="center-align">What Neighborhood Do You Belong To?</h3>
+          <h3 class="center-align">Select a neighborhood</h3>
           <div class="row">
             {% for neighborhood in neighborhoods %}
             <div class="divider"></div>
