@@ -1,7 +1,7 @@
 # Hoodwatch
 
 ##  Created by
-Loise Wangari Mwarangu
+Loise Mwarangu
 
 ## Link to deployed site
 https://loisewatch.herokuapp.com/
